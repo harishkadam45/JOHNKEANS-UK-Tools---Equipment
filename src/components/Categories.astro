@@ -27,7 +27,7 @@ import Icon from './Icon.astro';
             href={`/${c.slug}`}
             class="group flex h-full flex-col overflow-hidden rounded-xl bg-gray-100 transition-colors duration-200 hover:bg-jk-50"
           >
-            <div class="relative flex h-32 items-center justify-center bg-white p-4 sm:h-40 lg:h-44">
+            <div class="relative flex h-32 items-center justify-center bg-gray-100 p-4 sm:h-40 lg:h-44">
               <div
                 class="pointer-events-none absolute inset-0 opacity-50"
                 style="background-image:radial-gradient(var(--color-jk-300) 1px,transparent 1px);background-size:16px 16px;mask-image:radial-gradient(ellipse at center,#000 40%,transparent 78%)"
@@ -35,7 +35,7 @@ import Icon from './Icon.astro';
               <div class="relative w-24 text-ink-800 transition-transform duration-200 group-hover:scale-105 sm:w-32 lg:w-36">
                 <ToolArt name={c.art} />
               </div>
-              <span class="absolute top-2.5 right-2.5 rounded-full bg-gray-100 px-2.5 py-1 text-[11px] font-semibold text-ink-600">
+              <span class="absolute top-2.5 right-2.5 rounded-full bg-white px-2.5 py-1 text-[11px] font-semibold text-ink-600">
                 {c.count}
               </span>
             </div>

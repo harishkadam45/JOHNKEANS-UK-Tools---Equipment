@@ -9,7 +9,7 @@ export const company = {
   whatsapp: 'https://wa.me/44744906225',
   registeredIn: 'Registered in England and Wales',
   companyNo: 'Company Registration No: 14820963',
-  registeredOffice: 'Registered Office: 27–31 Barkers Lane, Kidderminster, Worcestershire, DY9 7SW',
+  registeredOffice: 'Registered Office: 27-31 Barkers Lane, Kidderminster, Worcestershire, DY9 7SW',
   currency: 'USD',
   copyright: '© 2026 JOHNKEANS UK LTD. All rights reserved.',
   shortDescription:
@@ -209,7 +209,7 @@ export const collections: Collection[] = [
   {
     title: 'Trade Bundles',
     slug: 'trade-bundles',
-    text: 'Kitted sets for electricians, joiners and general trades — built around the tools each job actually needs.',
+    text: 'Kitted sets for electricians, joiners and general trades - built around the tools each job actually needs.',
     art: 'toolbox',
     meta: '12 bundles from $129',
     tone: 'blue',

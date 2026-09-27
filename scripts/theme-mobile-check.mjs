@@ -88,7 +88,7 @@ const themeChecks = [
   ['No leftover dark surfaces', theme.darkSurfaces.length === 0, theme.darkSurfaces.join(' | ')],
 ];
 
-console.log('— theme audit (1440px) —');
+console.log('- theme audit (1440px) -');
 for (const [name, pass, detail] of themeChecks) {
   if (!pass) failed += 1;
   console.log(`${pass ? 'PASS' : 'FAIL'}  ${name}${detail ? `  [${detail}]` : ''}`);

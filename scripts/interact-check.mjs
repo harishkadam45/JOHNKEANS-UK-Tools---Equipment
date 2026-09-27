@@ -36,7 +36,7 @@ const digest = await page.evaluate(() => {
       : null,
   };
 });
-console.log('— measurements (1440px) —');
+console.log('- measurements (1440px) -');
 console.log(JSON.stringify(digest, null, 2));
 
 // Add to cart interaction

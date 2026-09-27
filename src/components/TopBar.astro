@@ -1,0 +1,46 @@
+---
+import { company } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<div class="bg-gray-100 text-ink-700">
+  <div class="container-page flex h-12 items-center justify-between gap-3 text-[13px] lg:h-11">
+    <!-- Left: delivery promise -->
+    <p class="hidden items-center gap-2 sm:flex">
+      <Icon name="truck" class="h-4 w-4 shrink-0 text-jk-600" />
+      <span>Delivering across the UK and international markets</span>
+    </p>
+
+    <!-- Right: contact + the Request a Quote button that sits where the currency switch was -->
+    <div class="flex w-full min-w-0 items-center justify-end gap-1 sm:w-auto sm:gap-2">
+      <a
+        href={`tel:${company.phoneHref}`}
+        class="hidden min-w-0 items-center gap-1.5 py-2 transition-colors hover:text-jk-700 lg:flex"
+      >
+        <Icon name="phone" class="h-4 w-4 shrink-0 text-jk-600" />
+        <span class="truncate">{company.phone}</span>
+      </a>
+      <a
+        href="/track-order"
+        class="hidden items-center py-2 whitespace-nowrap transition-colors hover:text-jk-700 md:flex"
+      >
+        Track Your Order
+      </a>
+      <span class="hidden text-ink-300 md:block" aria-hidden="true">|</span>
+      <!-- Single currency across the whole website -->
+      <span
+        class="flex items-center whitespace-nowrap"
+        title="All prices are shown in US dollars"
+      >
+        Prices in <strong class="ml-1 font-semibold text-ink-900">{company.currency}</strong>
+      </span>
+      <a
+        href="/request-a-quote"
+        class="ml-0.5 inline-flex h-10 shrink-0 items-center gap-1.5 rounded-btn bg-jk-600 px-3.5 text-[13px] font-semibold whitespace-nowrap text-white transition-colors hover:bg-jk-700 lg:h-8 lg:px-3"
+      >
+        <Icon name="quote" class="h-4 w-4 shrink-0" />
+        <span class="whitespace-nowrap">Request a Quote</span>
+      </a>
+    </div>
+  </div>
+</div>

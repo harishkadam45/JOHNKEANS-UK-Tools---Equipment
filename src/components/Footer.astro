@@ -1,0 +1,173 @@
+---
+import { company, footerColumns, socials } from '../data/site';
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import ToolArt from './ToolArt.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-ink-200 bg-white">
+  <!-- Upper: brand, contact and link columns -->
+  <div class="container-page grid gap-10 py-12 lg:grid-cols-[1.35fr_2fr] lg:gap-16 lg:py-14">
+    <div class="min-w-0">
+      <Logo />
+
+      <!-- Brief: replace the generic footer description -->
+      <p class="mt-5 max-w-sm text-[14px] leading-relaxed text-ink-600">
+        {company.footerDescription}
+      </p>
+
+      <a href="/request-a-quote" class="btn btn-md btn-primary mt-6">
+        <Icon name="quote" class="h-4.5 w-4.5" />
+        Request a Quote
+      </a>
+
+      <ul class="mt-6 space-y-3 text-[13.5px]">
+        <li>
+          <a
+            href={`mailto:${company.email}`}
+            class="inline-flex min-h-10 items-center gap-2.5 py-1 text-ink-700 transition-colors hover:text-jk-700"
+          >
+            <Icon name="mail" class="h-4.5 w-4.5 shrink-0 text-jk-600" />
+            <span class="truncate">{company.email}</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href={`tel:${company.phoneHref}`}
+            class="inline-flex min-h-10 items-center gap-2.5 py-1 text-ink-700 transition-colors hover:text-jk-700"
+          >
+            <Icon name="phone" class="h-4.5 w-4.5 shrink-0 text-jk-600" />
+            {company.phone}
+          </a>
+        </li>
+        <li>
+          <a
+            href={company.whatsapp}
+            class="inline-flex min-h-10 items-center gap-2.5 py-1 text-ink-700 transition-colors hover:text-jk-700"
+          >
+            <Icon name="whatsapp" class="h-4.5 w-4.5 shrink-0 text-jk-600" />
+            WhatsApp us
+          </a>
+        </li>
+        <li class="flex items-center gap-2.5 text-ink-700">
+          <Icon name="pin" class="h-4.5 w-4.5 shrink-0 text-jk-600" />
+          Kidderminster, United Kingdom
+        </li>
+      </ul>
+
+      <!-- Only accounts that are actually active -->
+      <ul class="mt-6 flex flex-wrap items-center gap-2">
+        {
+          socials.map((s) => (
+            <li>
+              <a
+                href={s.href}
+                aria-label={s.label}
+                class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100 text-ink-600 transition-colors hover:bg-jk-600 hover:text-white"
+              >
+                <span class="text-[12px] font-bold tracking-tight uppercase">{s.short}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:gap-8">
+      {
+        footerColumns.map((col) => (
+          <div class="min-w-0">
+            <h3 class="text-[16px] font-bold text-ink-900">{col.title}</h3>
+            <ul class="mt-4 space-y-2.5">
+              {col.links.map((l) => (
+                <li>
+                  <a
+                    href={l.href}
+                    class="flex min-h-10 items-center text-[13px] text-ink-600 transition-colors hover:text-jk-700"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Payment + reassurance strip -->
+  <div class="border-y border-ink-200 bg-gray-100">
+    <div
+      class="container-page flex flex-col items-center justify-between gap-4 py-5 sm:flex-row"
+    >
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <span class="text-[12.5px] text-ink-600">We accept</span>
+        <ul class="flex flex-wrap items-center gap-2">
+          {['VISA', 'MASTERCARD', 'AMEX', 'STRIPE', 'PAYPAL'].map((m) => (
+            <li class="rounded-md border border-ink-200 bg-white px-2.5 py-1.5 text-[11px] font-bold tracking-wide text-ink-600">
+              {m}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[12px] text-ink-600">
+        <span class="inline-flex items-center gap-1.5">
+          <Icon name="shield" class="h-4 w-4 shrink-0 text-jk-600" /> Secure encrypted checkout
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+          <Icon name="truck" class="h-4 w-4 shrink-0 text-jk-600" /> Tracked worldwide delivery
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+          <Icon name="refresh" class="h-4 w-4 shrink-0 text-jk-600" /> 14-day returns
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legal: copyright, then company identity for UK credibility -->
+  <div class="container-page py-7">
+    <div
+      class="flex flex-col items-center justify-between gap-5 text-center lg:flex-row lg:text-left"
+    >
+      <div class="flex items-center gap-3">
+        <span class="hidden w-11 shrink-0 text-ink-400 sm:block">
+          <ToolArt name="spade" />
+        </span>
+        <p class="text-[12.5px] text-ink-600">
+          &copy; {year} {company.name}. All rights reserved.
+        </p>
+      </div>
+
+      <div class="text-[12.5px] text-ink-500">
+        <p class="font-semibold text-ink-700">{company.name}</p>
+        <p class="mt-1">{company.registeredIn}</p>
+        <p class="mt-0.5">{company.companyNo}</p>
+        <p class="mt-0.5">{company.registeredOffice}</p>
+      </div>
+    </div>
+
+    <ul class="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 lg:justify-start">
+      <li class="inline-flex items-center gap-1.5 text-[12px] text-ink-500">
+        <Icon name="mail" class="h-3.5 w-3.5 shrink-0" /> {company.privacyEmail}
+      </li>
+      <li>
+        <a href="/privacy-policy" class="flex min-h-10 items-center text-[12px] text-ink-600 hover:text-jk-700">
+          Privacy Policy
+        </a>
+      </li>
+      <li>
+        <a href="/cookie-policy" class="flex min-h-10 items-center text-[12px] text-ink-600 hover:text-jk-700">
+          Cookie Preferences
+        </a>
+      </li>
+      <li>
+        <a href="/warranty-policy" class="flex min-h-10 items-center text-[12px] text-ink-600 hover:text-jk-700">
+          Warranty Policy
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer>

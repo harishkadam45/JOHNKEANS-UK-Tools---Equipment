@@ -1,0 +1,195 @@
+---
+/**
+ * Hand-drawn SVG tool illustrations (line-art, JOHNKEANS blue accents).
+ * Swap these for real product photography later by replacing the <ToolArt> call
+ * with an <img> — nothing else on the page depends on the drawing.
+ */
+interface Props {
+  name: string;
+  class?: string;
+}
+const { name, class: className = 'h-auto w-full' } = Astro.props;
+
+const art: Record<string, string> = {
+  drill: `
+    <path d="M20 40h44a8 8 0 0 1 8 8v6a8 8 0 0 1-8 8H20a8 8 0 0 1-8-8v-6a8 8 0 0 1 8-8Z" fill="var(--color-jk-50)"/>
+    <path d="M24 47v8M32 47v8M40 47v8" opacity=".4" stroke-width="3"/>
+    <path d="M72 44h14v16H72z" fill="var(--color-jk-100)"/>
+    <path d="M78 44v16M84 44v16" opacity=".5" stroke-width="3"/>
+    <path d="M86 52h22" stroke-width="5"/>
+    <path d="M66 68h9" stroke-width="4"/>
+    <path d="M57 63l7 24" stroke-width="10"/>
+    <path d="M44 86h32a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H44a4 4 0 0 1-4-4v-8a4 4 0 0 1 4-4Z" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>
+    <path d="M50 93h20" stroke="#fff" stroke-width="3" opacity=".55"/>`,
+
+  grinder: `
+    <path d="M14 28h44a6 6 0 0 1 6 6v10a6 6 0 0 1-6 6H14Z" fill="var(--color-jk-50)"/>
+    <path d="M22 34v10M30 34v10M38 34v10" opacity=".45" stroke-width="3"/>
+    <path d="M64 32h12a8 8 0 0 1 8 8v4H64Z" fill="var(--color-jk-100)"/>
+    <path d="M84 44h7" stroke-width="5"/>
+    <path d="M60 54h30a6 6 0 0 1 6 6v2" stroke-width="4"/>
+    <path d="M58 64h48" stroke-width="9" stroke="var(--color-jk-600)"/>
+    <path d="M40 46v12" stroke-width="6"/>
+    <path d="M33 58h14" stroke-width="6"/>`,
+
+  wrench: `
+    <path d="M42 20a20 20 0 1 0 38 0" stroke-width="8"/>
+    <path d="M36 14h14M72 14h14" stroke-width="8"/>
+    <path d="M56 40h8v44h-8z" fill="var(--color-jk-50)"/>
+    <circle cx="60" cy="96" r="15" fill="var(--color-jk-50)"/>
+    <circle cx="60" cy="96" r="7" stroke-width="4"/>`,
+
+  hammer: `
+    <path d="M22 26h26v20H22a10 10 0 0 1 0-20Z" fill="var(--color-jk-50)"/>
+    <path d="M48 30h12v12H48z" fill="var(--color-jk-100)"/>
+    <path d="M60 32 90 20M60 40l30 14" />
+    <path d="M90 20a20 20 0 0 1 0 34" stroke-width="4"/>
+    <path d="M55 42 44 100" stroke-width="8"/>`,
+
+  ratchet: `
+    <path d="M16 46h48a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H16Z" fill="var(--color-jk-50)"/>
+    <path d="M24 50v10M32 50v10M40 50v10" opacity=".45" stroke-width="3"/>
+    <path d="M69 38h20a7 7 0 0 1 7 7v20a7 7 0 0 1-7 7H69Z" fill="var(--color-jk-100)"/>
+    <circle cx="82" cy="55" r="8" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>
+    <path d="M78 55h8M82 51v8" stroke="#fff" stroke-width="2.5"/>`,
+
+  tape: `
+    <path d="M32 40h44a12 12 0 0 1 12 12v22a12 12 0 0 1-12 12H32a12 12 0 0 1-12-12V52a12 12 0 0 1 12-12Z" fill="var(--color-jk-50)"/>
+    <path d="M32 40V30a5 5 0 0 1 5-5h9a5 5 0 0 1 5 5v10"/>
+    <circle cx="54" cy="63" r="15" fill="var(--color-jk-100)"/>
+    <circle cx="54" cy="63" r="5" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>
+    <path d="M88 60h24a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H88Z" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>
+    <path d="M114 60v14" stroke-width="5"/>
+    <path d="M95 62v4M101 62v4M107 62v4" stroke="#fff" stroke-width="2" opacity=".85"/>`,
+
+  mower: `
+    <path d="M86 62 106 24M97 31l19-9" stroke-width="5"/>
+    <path d="M40 44h32v16H40Z" fill="var(--color-jk-100)"/>
+    <path d="M48 44v-8h8v8"/>
+    <path d="M24 60h64a8 8 0 0 1 8 8v14a8 8 0 0 1-8 8H24a8 8 0 0 1-8-8V68a8 8 0 0 1 8-8Z" fill="var(--color-jk-50)"/>
+    <path d="M18 73h76" opacity=".45" stroke-width="3"/>
+    <circle cx="30" cy="94" r="10" fill="var(--color-jk-100)"/><circle cx="30" cy="94" r="4"/>
+    <circle cx="84" cy="94" r="10" fill="var(--color-jk-100)"/><circle cx="84" cy="94" r="4"/>
+    <path d="M10 108h10M50 108h12M94 108h10" opacity=".45" stroke-width="3"/>`,
+
+  multimeter: `
+    <path d="M32 22h56a8 8 0 0 1 8 8v64a8 8 0 0 1-8 8H32a8 8 0 0 1-8-8V30a8 8 0 0 1 8-8Z" fill="var(--color-jk-50)"/>
+    <path d="M33 30h54a6 6 0 0 1 6 6v18H27V36a6 6 0 0 1 6-6Z" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>
+    <path d="M35 40h14M35 46h22" stroke="#fff" stroke-width="3" opacity=".9"/>
+    <circle cx="60" cy="74" r="13" fill="var(--color-jk-100)"/>
+    <path d="M60 61v13l9 6" />
+    <path d="M46 102c0 8-8 6-8 14" stroke-width="3.5" stroke="var(--color-jk-600)"/>
+    <path d="M74 102c0 8 8 6 8 14" stroke-width="3.5" stroke="var(--color-jk-600)"/>
+    <path d="M32 116h8" stroke-width="6"/>
+    <path d="M82 112v10" stroke-width="6"/>`,
+
+  worklight: `
+    <path d="M30 28h60l-9 28H39Z" fill="var(--color-jk-50)"/>
+    <path d="M40 34h40l-5 16H45Z" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>
+    <path d="M28 28h64" stroke-width="6"/>
+    <path d="M52 56h16v10H52Z" fill="var(--color-jk-100)"/>
+    <path d="M48 66h24v28a7 7 0 0 1-7 7H55a7 7 0 0 1-7-7Z" fill="var(--color-jk-50)"/>
+    <path d="M53 74h14M53 82h14M53 90h14" opacity=".45" stroke-width="3"/>
+    <path d="M41 101h38v9H41z" fill="var(--color-jk-100)"/>`,
+
+  toolbox: `
+    <path d="M50 46V32a10 10 0 0 1 20 0v14" stroke-width="5"/>
+    <path d="M16 52a7 7 0 0 1 7-7h74a7 7 0 0 1 7 7v6H16Z" fill="var(--color-jk-100)"/>
+    <path d="M16 58h88v30a6 6 0 0 1-6 6H22a6 6 0 0 1-6-6Z" fill="var(--color-jk-50)"/>
+    <path d="M50 58v36M70 58v36M16 72h88" opacity=".4" stroke-width="3"/>
+    <path d="M44 50h11v11H44zM65 50h11v11H65z" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>`,
+
+  impact: `
+    <path d="M30 40h48a10 10 0 0 1 10 10v10a10 10 0 0 1-10 10H30a10 10 0 0 1-10-10V50a10 10 0 0 1 10-10Z" fill="var(--color-jk-50)"/>
+    <path d="M28 50h20M28 59h20" opacity=".45" stroke-width="3"/>
+    <path d="M88 46h14v18H88Z" fill="var(--color-jk-100)"/>
+    <path d="M102 50h10v10h-10z" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>
+    <path d="M45 70l8 22" stroke-width="10"/>
+    <path d="M38 90h30a5 5 0 0 1 5 5v5a5 5 0 0 1-5 5H38a5 5 0 0 1-5-5v-5a5 5 0 0 1 5-5Z" fill="var(--color-jk-100)"/>
+    <path d="M20 54C6 56 6 78 20 82" stroke="var(--color-jk-600)" stroke-width="4"/>`,
+
+  saw: `
+    <circle cx="46" cy="68" r="22" fill="var(--color-jk-50)"/>
+    <path d="M46 46a22 22 0 0 1 19 11" stroke-width="3"/>
+    <circle cx="46" cy="68" r="6" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>
+    <path d="M68 68a22 22 0 0 0-22-22v10a12 12 0 0 1 12 12Z" fill="var(--color-jk-100)"/>
+    <path d="M40 34h48a8 8 0 0 1 8 8v18H40Z" fill="var(--color-jk-50)"/>
+    <path d="M56 34V22a8 8 0 0 1 8-8h20a8 8 0 0 1 8 8v12" stroke-width="6"/>
+    <path d="M12 92h96v8H12z" fill="var(--color-jk-100)"/>`,
+
+  laser: `
+    <path d="M20 46h80a8 8 0 0 1 8 8v22a8 8 0 0 1-8 8H20a8 8 0 0 1-8-8V54a8 8 0 0 1 8-8Z" fill="var(--color-jk-50)"/>
+    <circle cx="24" cy="65" r="8" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>
+    <circle cx="96" cy="65" r="8" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>
+    <path d="M40 58h40v14H40z" fill="var(--color-jk-100)"/>
+    <path d="M60 58v14M48 65h24" stroke-width="3"/>
+    <path d="M0 65h16M104 65h16" stroke="var(--color-jk-400)" stroke-width="4" stroke-dasharray="6 5"/>
+    <path d="M52 84h16v8H52z" fill="var(--color-jk-100)"/>
+    <path d="M44 92h32" />`,
+
+  level: `
+    <path d="M12 52h96a6 6 0 0 1 6 6v12a6 6 0 0 1-6 6H12a6 6 0 0 1-6-6V58a6 6 0 0 1 6-6Z" fill="var(--color-jk-50)"/>
+    <circle cx="32" cy="64" r="8" fill="var(--color-jk-100)"/><path d="M32 56v16" stroke-width="3" stroke="var(--color-jk-600)"/>
+    <rect x="50" y="57" width="26" height="14" rx="3" fill="var(--color-jk-100)"/><path d="M63 58v12" stroke-width="3" stroke="var(--color-jk-600)"/>
+    <circle cx="94" cy="64" r="8" fill="var(--color-jk-100)"/><path d="M94 56v16" stroke-width="3" stroke="var(--color-jk-600)"/>
+    <path d="M12 82h96" opacity=".4" stroke-width="3"/>`,
+
+  sockets: `
+    <path d="M16 44h88a7 7 0 0 1 7 7v52a7 7 0 0 1-7 7H16a7 7 0 0 1-7-7V51a7 7 0 0 1 7-7Z" fill="var(--color-jk-50)"/>
+    <path d="M9 56h102" opacity=".4" stroke-width="3"/>
+    <path d="M24 72h11v24H24zM41 76h11v20H41zM58 80h11v16H58zM75 84h11v12H75z" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>
+    <path d="M92 88h9v8h-9z" fill="var(--color-jk-300)" stroke="var(--color-jk-600)"/>
+    <path d="M50 50h20v8H50z" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>`,
+
+  compressor: `
+    <path d="M18 62h84a10 10 0 0 1 10 10v22a10 10 0 0 1-10 10H18a10 10 0 0 1-10-10V72a10 10 0 0 1 10-10Z" fill="var(--color-jk-50)"/>
+    <path d="M8 78h104" opacity=".4" stroke-width="3"/>
+    <path d="M38 38h42a7 7 0 0 1 7 7v17H31V45a7 7 0 0 1 7-7Z" fill="var(--color-jk-100)"/>
+    <path d="M40 44v12M49 44v12M58 44v12M67 44v12" opacity=".5" stroke-width="3"/>
+    <circle cx="24" cy="44" r="12" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>
+    <path d="M24 44l6-6" stroke="#fff" stroke-width="3"/>
+    <path d="M87 46c14 0 14 18 3 20" stroke="var(--color-jk-600)" stroke-width="4"/>
+    <path d="M24 104h12M84 104h12" stroke-width="5"/>`,
+
+  generator: `
+    <path d="M14 40h80a8 8 0 0 1 8 8v50a8 8 0 0 1-8 8H14a8 8 0 0 1-8-8V48a8 8 0 0 1 8-8Z" fill="var(--color-jk-50)"/>
+    <path d="M18 52v40M28 52v40M38 52v40" opacity=".4" stroke-width="4"/>
+    <path d="M52 50h40v34H52z" fill="var(--color-jk-100)"/>
+    <circle cx="64" cy="62" r="7" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>
+    <circle cx="82" cy="62" r="7" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>
+    <path d="M58 76h28" stroke-width="4"/>
+    <path d="M14 40V26a6 6 0 0 1 6-6h68a6 6 0 0 1 6 6v14" />
+    <path d="M6 100h96" opacity=".4" stroke-width="3"/>
+    <circle cx="30" cy="108" r="8" fill="var(--color-jk-100)"/>
+    <circle cx="90" cy="108" r="8" fill="var(--color-jk-100)"/>`,
+
+  spade: `
+    <path d="M46 14h28a5 5 0 0 1 5 5v18a5 5 0 0 1-5 5H46a5 5 0 0 1-5-5V19a5 5 0 0 1 5-5Z" fill="var(--color-jk-100)"/>
+    <path d="M50 22h20v10H50z" fill="var(--color-jk-50)"/>
+    <path d="M56 42h8v44h-8z" fill="var(--color-jk-50)"/>
+    <path d="M48 84h24" stroke-width="5"/>
+    <path d="M53 90h14l7 12a14 14 0 0 1-28 0Z" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>`,
+
+  pliers: `
+    <path d="M57 14 44 44M63 14l13 30" stroke-width="7"/>
+    <path d="M44 44a9 9 0 0 0 16 0M76 44a9 9 0 0 1-16 0"/>
+    <circle cx="60" cy="52" r="5" fill="var(--color-jk-600)" stroke="var(--color-jk-700)"/>
+    <path d="M52 58 38 100M68 58l14 42" stroke-width="9"/>
+    <path d="M34 92h9M77 92h9" stroke="var(--color-jk-600)" stroke-width="9"/>`,
+};
+
+const body = art[name] ?? art.drill;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 120 120"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="4.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  role="img"
+  aria-label={name.replaceAll('-', ' ')}
+  set:html={body}
+/>

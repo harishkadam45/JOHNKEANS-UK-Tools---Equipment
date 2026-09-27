@@ -1,0 +1,26 @@
+---
+import { benefits } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<!-- Brief: keep this band white or very light grey, icons in JOHNKEANS blue,
+     equal spacing between all five, two-column grid on mobile. -->
+<section class="border-b border-ink-200 bg-white">
+  <div class="container-page py-10 lg:py-12">
+    <ul class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5">
+      {
+        benefits.map((b) => (
+          <li class="flex flex-col items-center rounded-xl bg-gray-100 p-4 text-center sm:p-5 lg:items-start lg:text-left">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-jk-600 text-white">
+              <Icon name={b.icon} class="h-5.5 w-5.5" />
+            </span>
+            <h3 class="mt-3 text-[14px] leading-snug font-bold text-ink-900 sm:text-[15px]">
+              {b.title}
+            </h3>
+            <p class="mt-1 text-[12px] leading-snug text-ink-500 sm:text-[12.5px]">{b.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

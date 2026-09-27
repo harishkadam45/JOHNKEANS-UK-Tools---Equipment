@@ -1,0 +1,126 @@
+---
+import Icon from './Icon.astro';
+import ToolArt from './ToolArt.astro';
+
+const points = [
+  'Add as many products as you need',
+  'Upload your RFQ or specification (PDF, Excel, Word, images)',
+  'Volume discounts applied automatically',
+  'Reference number issued, e.g. RFQ-JK-2026-00125',
+];
+---
+
+<section class="border-y border-ink-200 bg-white">
+  <div
+    class="container-page relative grid items-center gap-10 py-12 lg:grid-cols-[1.15fr_1fr] lg:py-16"
+  >
+    <div>
+      <p
+        class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1.5 text-[12.5px] font-semibold text-jk-700"
+      >
+        <Icon name="quote" class="h-4 w-4" />
+        Trade &amp; volume buyers
+      </p>
+      <h2 class="mt-4 text-[26px] font-extrabold tracking-tight text-ink-900 sm:text-[30px] lg:text-[34px]">
+        Need a custom quotation?
+      </h2>
+      <p class="mt-3 max-w-xl text-[14.5px] leading-relaxed text-ink-600 sm:text-[15px]">
+        Request a custom quotation for JOHNKEANS tools and equipment. Add the required products or
+        upload your RFQ/specification document. Our team will review your requirements and respond
+        within two business days.
+      </p>
+
+      <ul class="mt-6 grid gap-2.5 sm:grid-cols-2">
+        {
+          points.map((p) => (
+            <li class="flex items-start gap-2.5 text-[13px] text-ink-700 sm:text-[13.5px]">
+              <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-jk-600 text-white">
+                <Icon name="check" class="h-3.5 w-3.5" strokeWidth={2.4} />
+              </span>
+              {p}
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+        <a href="/request-a-quote" class="btn btn-lg btn-primary w-full sm:w-auto">
+          Request a Quote <Icon name="arrowRight" class="h-5 w-5" />
+        </a>
+        <a href="/contact?type=sales" class="btn btn-lg btn-outline w-full sm:w-auto">
+          Talk to our team
+        </a>
+      </div>
+    </div>
+
+    <!-- Mock quote card -->
+    <div class="min-w-0">
+      <div class="rounded-2xl border border-ink-200 bg-gray-100 p-4 sm:p-5">
+        <div class="flex items-center justify-between">
+          <p class="text-[11.5px] font-semibold tracking-[0.14em] text-ink-500 uppercase">
+            Quotation request
+          </p>
+          <span class="rounded-md bg-jk-600 px-2 py-1 text-[10.5px] font-bold text-white">RFQ</span>
+        </div>
+
+        <ul class="mt-4 space-y-2">
+          {
+            [
+              { n: '1', t: '18V Brushless Combi Drill', m: 'JKD-18BL', q: '× 40' },
+              { n: '2', t: '115 mm Angle Grinder', m: 'JKA-115', q: '× 60' },
+              { n: '3', t: '3/8" Ratchet & Socket Set', m: 'JKR-38S', q: '× 25' },
+            ].map((row) => (
+              <li class="flex items-center gap-2.5 rounded-lg bg-white p-2.5 sm:gap-3 sm:p-3">
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-gray-100 text-[12px] font-bold text-ink-700">
+                  {row.n}
+                </span>
+                <span class="min-w-0 flex-1">
+                  <span class="block truncate text-[12.5px] font-semibold text-ink-900 sm:text-[13px]">
+                    {row.t}
+                  </span>
+                  <span class="block text-[11px] text-ink-500">{row.m}</span>
+                </span>
+                <span class="shrink-0 text-[12.5px] font-bold text-ink-900 sm:text-[13px]">
+                  {row.q}
+                </span>
+              </li>
+            ))
+          }
+          <li
+            class="flex items-center justify-center gap-2 rounded-lg border border-dashed border-ink-300 py-2.5 text-[12.5px] font-semibold text-ink-600"
+          >
+            <Icon name="plus" class="h-4 w-4" /> Add another product
+          </li>
+        </ul>
+
+        <dl class="mt-4 grid grid-cols-2 gap-3 border-t border-ink-200 pt-4 text-[12px]">
+          <div class="min-w-0">
+            <dt class="text-ink-500">Delivery country / city</dt>
+            <dd class="mt-0.5 font-semibold text-ink-900">United Kingdom</dd>
+          </div>
+          <div class="min-w-0">
+            <dt class="text-ink-500">Required delivery date</dt>
+            <dd class="mt-0.5 font-semibold text-ink-900">Within 4 weeks</dd>
+          </div>
+        </dl>
+
+        <div class="mt-4 flex items-center justify-between gap-3 rounded-lg bg-white p-3">
+          <div class="flex min-w-0 items-center gap-2.5">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-jk-600 text-white">
+              <Icon name="clock" class="h-4.5 w-4.5" />
+            </span>
+            <span class="min-w-0 leading-tight">
+              <span class="block text-[12px] font-bold text-ink-900">
+                Response within 2 business days
+              </span>
+              <span class="block text-[10.5px] text-ink-500">Ref: RFQ-JK-2026-00125</span>
+            </span>
+          </div>
+          <span class="hidden w-12 shrink-0 text-ink-800 sm:block">
+            <ToolArt name="ratchet" />
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

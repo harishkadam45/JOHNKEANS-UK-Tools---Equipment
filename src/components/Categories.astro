@@ -1,0 +1,61 @@
+---
+import { categories } from '../data/site';
+import ToolArt from './ToolArt.astro';
+import Icon from './Icon.astro';
+---
+
+<section class="container-page py-12 lg:py-16">
+  <div class="flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <p class="eyebrow">Browse the range</p>
+      <h2 class="mt-1.5">Popular Categories</h2>
+      <p class="mt-2 max-w-2xl text-[14px] text-ink-600 sm:text-[15px]">
+        Six core ranges covering construction, automotive, industrial, workshop, maintenance and
+        outdoor work.
+      </p>
+    </div>
+    <a href="/shop" class="btn btn-sm btn-outline">
+      View all categories <Icon name="arrowRight" class="h-4 w-4" />
+    </a>
+  </div>
+
+  <ul class="mt-7 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 lg:gap-5">
+    {
+      categories.map((c) => (
+        <li>
+          <a
+            href={`/${c.slug}`}
+            class="group flex h-full flex-col overflow-hidden rounded-xl bg-gray-100 transition-colors duration-200 hover:bg-jk-50"
+          >
+            <div class="relative flex h-32 items-center justify-center bg-white p-4 sm:h-40 lg:h-44">
+              <div
+                class="pointer-events-none absolute inset-0 opacity-50"
+                style="background-image:radial-gradient(var(--color-jk-300) 1px,transparent 1px);background-size:16px 16px;mask-image:radial-gradient(ellipse at center,#000 40%,transparent 78%)"
+              />
+              <div class="relative w-24 text-ink-800 transition-transform duration-200 group-hover:scale-105 sm:w-32 lg:w-36">
+                <ToolArt name={c.art} />
+              </div>
+              <span class="absolute top-2.5 right-2.5 rounded-full bg-gray-100 px-2.5 py-1 text-[11px] font-semibold text-ink-600">
+                {c.count}
+              </span>
+            </div>
+            <div class="flex flex-1 flex-col p-3.5 sm:p-4 lg:p-5">
+              {/* Brief: category-card titles 14px desktop */}
+              <h3 class="text-[12.5px] leading-snug font-bold text-ink-900 sm:text-[14px]">
+                {c.name}
+              </h3>
+              <p class="mt-1 text-[11.5px] leading-snug text-ink-500 sm:text-[12.5px]">{c.blurb}</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-[12.5px] font-semibold text-jk-700">
+                Shop now
+                <Icon
+                  name="arrowRight"
+                  class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
+                />
+              </span>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

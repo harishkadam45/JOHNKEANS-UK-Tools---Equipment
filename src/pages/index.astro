@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Benefits from '../components/Benefits.astro';
+import Categories from '../components/Categories.astro';
+import ProductRail from '../components/ProductRail.astro';
+import Collections from '../components/Collections.astro';
+import QuoteBanner from '../components/QuoteBanner.astro';
+import Perks from '../components/Perks.astro';
+import { bestSellers, newArrivals } from '../data/site';
+---
+
+<Base>
+  <Hero />
+  <Benefits />
+  <Categories />
+
+  <ProductRail
+    id="best-sellers"
+    title="Best Sellers"
+    blurb="The JOHNKEANS tools professionals reorder most — proven on site, in the workshop and on the plant."
+    products={bestSellers}
+    viewAllHref="/best-sellers"
+  />
+
+  <Collections />
+
+  <ProductRail
+    id="new-arrivals"
+    title="New Arrivals"
+    blurb="Recently added to the range, built to the same JOHNKEANS specifications as everything else."
+    products={newArrivals}
+    viewAllHref="/new-arrivals"
+  />
+
+  <QuoteBanner />
+  <Perks />
+</Base>
+
+<script>
+  // Demo-only cart interaction so the pitch shows a working basket badge.
+  let count = 2;
+  const badge = document.querySelector<HTMLElement>('[data-cart-count]');
+  const cartLink = document.querySelector<HTMLAnchorElement>('a[href="/cart"]');
+
+  document.addEventListener('click', (event) => {
+    const trigger = (event.target as HTMLElement).closest<HTMLElement>('[data-add-to-cart]');
+    if (!trigger) return;
+    const label = trigger.querySelector('span:last-of-type');
+    const original = label?.textContent ?? 'Add';
+    count += 1;
+    if (badge) badge.textContent = String(count);
+    cartLink?.setAttribute('aria-label', `Shopping cart, ${count} items`);
+    trigger.classList.add('bg-ink-900');
+    trigger.classList.remove('bg-jk-600');
+    if (label) label.textContent = 'Added';
+    trigger.classList.add('pointer-events-none');
+    window.setTimeout(() => {
+      if (label) label.textContent = original;
+      trigger.classList.remove('pointer-events-none', 'bg-ink-900');
+      trigger.classList.add('bg-jk-600');
+    }, 1100);
+  });
+</script>

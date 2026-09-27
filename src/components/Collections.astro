@@ -1,0 +1,65 @@
+---
+import { collections } from '../data/site';
+import ToolArt from './ToolArt.astro';
+import Icon from './Icon.astro';
+---
+
+<section class="border-t border-ink-200 bg-white py-12 lg:py-16">
+  <div class="container-page">
+    <div class="flex flex-wrap items-end justify-between gap-3">
+      <div class="min-w-0">
+        <p class="eyebrow">Curated ranges</p>
+        <h2 class="mt-1.5">Featured Collections</h2>
+        <p class="mt-2 max-w-2xl text-[14px] text-ink-600 sm:text-[15px]">
+          Grouped ranges that save time on site, in the workshop and on the plant.
+        </p>
+      </div>
+      <a href="/shop" class="btn btn-sm btn-outline shrink-0">
+        All collections <Icon name="arrowRight" class="h-4 w-4" />
+      </a>
+    </div>
+
+    <ul class="mt-7 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-5">
+      {
+        collections.map((c) => (
+          <li class="min-w-0">
+            <a
+              href={`/collections/${c.slug}`}
+              class="group relative flex h-full flex-col overflow-hidden rounded-xl bg-gray-100 p-5 transition-colors duration-200 hover:bg-jk-50 sm:p-6"
+            >
+              <div
+                class="pointer-events-none absolute inset-0 opacity-60"
+                style="background-image:radial-gradient(var(--color-jk-300) 1px,transparent 1px);background-size:18px 18px;mask-image:radial-gradient(ellipse at 80% 20%,#000,transparent 70%)"
+              />
+
+              <div class="relative flex items-start justify-between gap-3">
+                <div class="min-w-0">
+                  <h3 class="text-[17px] font-bold text-ink-900 sm:text-[19px]">{c.title}</h3>
+                  <p class="mt-2 max-w-[30ch] text-[12.5px] leading-relaxed text-ink-600 sm:text-[13px]">
+                    {c.text}
+                  </p>
+                </div>
+                <div class="w-16 shrink-0 text-ink-800 sm:w-24">
+                  <ToolArt name={c.art} />
+                </div>
+              </div>
+
+              <div class="relative mt-auto flex items-center justify-between gap-3 pt-5">
+                <span class="text-[12px] font-semibold text-ink-500 sm:text-[12.5px]">
+                  {c.meta}
+                </span>
+                <span class="btn btn-primary h-10 shrink-0 px-3.5 text-[13px]">
+                  Explore
+                  <Icon
+                    name="arrowRight"
+                    class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
+                  />
+                </span>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

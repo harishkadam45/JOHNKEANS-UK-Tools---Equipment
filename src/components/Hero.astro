@@ -1,0 +1,145 @@
+---
+import { company } from '../data/site';
+import Icon from './Icon.astro';
+import ToolArt from './ToolArt.astro';
+---
+
+<section class="relative overflow-hidden bg-white">
+  <!-- Ambient background: light blue tints only -->
+  <div
+    class="pointer-events-none absolute inset-0"
+    style="background:
+      radial-gradient(900px 480px at 78% 10%, rgba(22,99,199,.10), transparent 62%),
+      radial-gradient(700px 420px at 6% 88%, rgba(22,99,199,.07), transparent 60%);"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute inset-0 opacity-[0.5]"
+    style="background-image:linear-gradient(var(--color-jk-200) 1px,transparent 1px),linear-gradient(90deg,var(--color-jk-200) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 70% 60% at 60% 40%,#000,transparent 75%)"
+  >
+  </div>
+
+  <div class="container-page relative grid items-center gap-10 py-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,.95fr)] lg:gap-14 lg:py-18">
+    <!-- Copy -->
+    <div class="max-w-xl">
+      <p
+        class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1.5 text-[12.5px] font-semibold text-jk-700"
+      >
+        <span class="flex h-1.5 w-1.5 rounded-full bg-jk-600"></span>
+        British design &amp; engineering
+      </p>
+
+      <h1
+        class="mt-5 text-[34px] leading-[1.08] font-extrabold tracking-tight text-ink-900 sm:text-5xl lg:text-[54px]"
+      >
+        Work Smarter.<br />
+        Perform Better.<br />
+        <span class="text-jk-600">Take On More.</span>
+      </h1>
+
+      <p class="mt-5 max-w-lg text-[15.5px] leading-relaxed text-ink-600">
+        {company.shortDescription} Designed in Britain, manufactured to defined JOHNKEANS
+        specifications and inspected before it reaches your hands.
+      </p>
+
+      <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+        <a href="/shop" class="btn btn-lg btn-primary w-full sm:w-auto">
+          Shop Now <Icon name="arrowRight" class="h-5 w-5" />
+        </a>
+        <a href="/request-a-quote" class="btn btn-lg btn-outline w-full sm:w-auto">
+          <Icon name="quote" class="h-5 w-5" />
+          Request a Quote
+        </a>
+      </div>
+
+      <!-- Quick proof points -->
+      <dl class="mt-8 grid max-w-lg grid-cols-3 gap-4 border-t border-ink-200 pt-6">
+        <div>
+          <dt class="text-[11.5px] tracking-wide text-ink-500 uppercase">Categories</dt>
+          <dd class="mt-1 text-2xl font-bold text-ink-900">6</dd>
+        </div>
+        <div>
+          <dt class="text-[11.5px] tracking-wide text-ink-500 uppercase">Products</dt>
+          <dd class="mt-1 text-2xl font-bold text-ink-900">670+</dd>
+        </div>
+        <div>
+          <dt class="text-[11.5px] tracking-wide text-ink-500 uppercase">Response</dt>
+          <dd class="mt-1 text-2xl font-bold text-ink-900">2 days</dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Visual -->
+    <div class="relative">
+      <div
+        class="relative overflow-hidden rounded-2xl border border-ink-200 bg-gray-100 p-5 sm:p-7"
+      >
+        <div
+          class="pointer-events-none absolute inset-0 opacity-60"
+          style="background-image:radial-gradient(var(--color-jk-300) 1px,transparent 1px);background-size:22px 22px;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 74%)"
+        >
+        </div>
+
+        <div class="relative mx-auto w-full max-w-[280px] text-ink-800 sm:max-w-[330px]">
+          <ToolArt name="drill" class="h-auto w-full" />
+        </div>
+
+        <div class="relative mt-3 flex items-center justify-between gap-3 border-t border-ink-200 pt-4">
+          <div class="min-w-0">
+            <p class="text-[11px] tracking-[0.14em] text-jk-700 uppercase">Featured</p>
+            <p class="mt-0.5 truncate text-sm font-semibold text-ink-900">
+              18V Brushless Combi Drill
+            </p>
+          </div>
+          <a
+            href="/power-tools"
+            class="btn btn-primary h-10 shrink-0 px-3.5 text-[13px]"
+          >
+            View range <Icon name="arrowRight" class="h-4 w-4" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Floating cards -->
+      <div
+        class="absolute -top-4 -left-2 hidden items-center gap-2.5 rounded-xl border border-ink-200 bg-white px-3.5 py-2.5 shadow-lg shadow-ink-900/8 sm:flex lg:-left-6"
+      >
+        <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-jk-600 text-white">
+          <Icon name="shield" class="h-5 w-5" />
+        </span>
+        <span class="leading-tight">
+          <span class="block text-[13px] font-bold text-ink-900">Inspected</span>
+          <span class="block text-[11.5px] text-ink-500">to JOHNKEANS standards</span>
+        </span>
+      </div>
+
+      <div
+        class="absolute -right-2 -bottom-5 hidden items-center gap-2.5 rounded-xl border border-ink-200 bg-white px-3.5 py-2.5 shadow-lg shadow-ink-900/8 sm:flex lg:-right-5"
+      >
+        <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-jk-600 text-white">
+          <Icon name="globe" class="h-5 w-5" />
+        </span>
+        <span class="leading-tight">
+          <span class="block text-[13px] font-bold text-ink-900">Delivered worldwide</span>
+          <span class="block text-[11.5px] text-ink-500">UK &amp; international markets</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slim category strip -->
+  <div class="relative border-t border-ink-200 bg-gray-100">
+    <div class="container-page no-scrollbar flex items-center gap-5 overflow-x-auto py-3.5 text-[12.5px] text-ink-600 sm:gap-6">
+      <span class="shrink-0 font-semibold tracking-wide text-ink-500 uppercase">Popular:</span>
+      {
+        ['Cordless Drills', 'Angle Grinders', 'Socket Sets', 'Measuring', 'Work Lights', 'Compressors', 'Lawn Care'].map(
+          (t) => (
+            <a href="/shop" class="shrink-0 whitespace-nowrap transition-colors hover:text-jk-700">
+              {t}
+            </a>
+          ),
+        )
+      }
+    </div>
+  </div>
+</section>

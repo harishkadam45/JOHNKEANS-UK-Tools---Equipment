@@ -1,0 +1,117 @@
+---
+import type { Product } from '../data/site';
+import ToolArt from './ToolArt.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  product: Product;
+}
+const { product } = Astro.props;
+---
+
+<article
+  class="group relative flex h-full flex-col overflow-hidden rounded-xl bg-gray-100 transition-colors duration-200 hover:bg-jk-50"
+>
+  {
+    product.badge && (
+      <span class="absolute top-2.5 left-2.5 z-10 rounded-md bg-ink-900 px-2 py-1 text-[10px] font-bold tracking-wide text-white uppercase">
+        {product.badge}
+      </span>
+    )
+  }
+  {
+    product.stock === 'Low stock' && (
+      <span class="absolute top-2.5 right-2.5 z-10 rounded-md bg-white px-2 py-1 text-[10px] font-bold tracking-wide text-amber-700 uppercase">
+        Low stock
+      </span>
+    )
+  }
+
+  <!-- Image. Model number is printed small and left aligned beneath the heading below. -->
+  <a href={`/product/${product.sku.toLowerCase()}`} class="relative block p-2.5 pb-0">
+    <div
+      class="relative flex h-36 items-center justify-center overflow-hidden rounded-lg bg-white sm:h-44 lg:h-48"
+    >
+      <div
+        class="pointer-events-none absolute inset-0 opacity-50"
+        style="background-image:radial-gradient(var(--color-jk-200) 1px,transparent 1px);background-size:18px 18px;mask-image:radial-gradient(ellipse at center,#000 35%,transparent 76%)"
+      >
+      </div>
+      <div
+        class="relative w-28 text-ink-800 transition-transform duration-200 group-hover:scale-105 sm:w-36 lg:w-40"
+      >
+        <ToolArt name={product.art} />
+      </div>
+    </div>
+  </a>
+
+  <!-- Order is fixed by the brief: HEADING → MODEL → SKU → REVIEWS -->
+  <div class="flex flex-1 flex-col p-3 sm:p-4">
+    <h3 class="text-[14px] leading-snug font-bold text-ink-900">
+      <a href={`/product/${product.sku.toLowerCase()}`} class="hover:text-jk-700">
+        {product.name}
+      </a>
+    </h3>
+
+    <p class="mt-1 text-[12.5px] font-semibold tracking-wide text-jk-700">
+      {product.model}
+    </p>
+
+    <p class="mt-0.5 text-[11.5px] text-ink-500">
+      SKU: <span class="font-medium text-ink-600">{product.sku}</span>
+    </p>
+
+    <!-- Reviews: 0 shown, no star pre-selected -->
+    <div class="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1">
+      <span class="inline-flex items-center gap-0.5" aria-hidden="true">
+        {[0, 1, 2, 3, 4].map(() => (
+          <svg
+            viewBox="0 0 24 24"
+            class="h-3.5 w-3.5 fill-ink-300 stroke-ink-300"
+            stroke-width="1.5"
+          >
+            <path d="m12 4 2.4 5 5.6.8-4 3.9 1 5.5-5-2.7-5 2.7 1-5.5-4-3.9 5.6-.8Z" />
+          </svg>
+        ))}
+      </span>
+      <span class="text-[11.5px] text-ink-500">0</span>
+      <a
+        href={`/product/${product.sku.toLowerCase()}#reviews`}
+        class="text-[11.5px] leading-tight font-semibold text-jk-700 hover:text-jk-600 hover:underline"
+      >
+        Be the first to review this product
+      </a>
+    </div>
+
+    <!-- Three-line description on the outer/listing page -->
+    <p class="mt-2.5 line-clamp-2 text-[12px] leading-relaxed text-ink-500 sm:line-clamp-3 sm:text-[12.5px]">
+      {product.blurb}
+    </p>
+
+    <div class="mt-auto flex flex-wrap items-end justify-between gap-2 pt-3.5">
+      <p class="leading-none">
+        <span class="text-[19px] font-extrabold tracking-tight text-ink-900 sm:text-[21px]">
+          ${product.price.toFixed(2)}
+        </span>
+        {
+          product.was && (
+            <span class="ml-1.5 text-[12px] text-ink-400 line-through">
+              ${product.was.toFixed(2)}
+            </span>
+          )
+        }
+        <span class="mt-1 block text-[10.5px] text-ink-500">Delivery at checkout</span>
+      </p>
+      <button
+        type="button"
+        data-add-to-cart
+        data-title={product.name}
+        class="btn btn-sm btn-primary shrink-0"
+        aria-label={`Add ${product.name} to cart`}
+      >
+        <Icon name="cart" class="h-4.5 w-4.5" />
+        <span>Add</span>
+      </button>
+    </div>
+  </div>
+</article>

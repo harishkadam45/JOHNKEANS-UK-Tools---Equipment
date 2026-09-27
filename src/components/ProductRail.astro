@@ -1,0 +1,32 @@
+---
+import ProductCard from './ProductCard.astro';
+import Icon from './Icon.astro';
+import type { Product } from '../data/site';
+
+interface Props {
+  id: string;
+  title: string;
+  blurb: string;
+  products: Product[];
+  viewAllHref?: string;
+}
+const { id, title, blurb, products, viewAllHref = '/shop' } = Astro.props;
+---
+
+<section id={id} class="border-t border-ink-200 bg-white py-12 lg:py-16">
+  <div class="container-page">
+    <div class="flex flex-wrap items-end justify-between gap-3">
+      <div class="min-w-0">
+        <h2>{title}</h2>
+        <p class="mt-2 max-w-2xl text-[14px] text-ink-600 sm:text-[15px]">{blurb}</p>
+      </div>
+      <a href={viewAllHref} class="btn btn-sm btn-outline shrink-0">
+        View All <Icon name="arrowRight" class="h-4 w-4" />
+      </a>
+    </div>
+
+    <ul class="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5 lg:gap-5">
+      {products.map((p) => <li class="min-w-0"><ProductCard product={p} /></li>)}
+    </ul>
+  </div>
+</section>

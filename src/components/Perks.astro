@@ -1,0 +1,56 @@
+---
+import { perks } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<section class="bg-white">
+  <div class="container-page py-12 lg:py-14">
+    <ul class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+      {
+        perks.map((p) => (
+          <li class="flex items-start gap-3 rounded-xl bg-gray-100 p-4">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-jk-700">
+              <Icon name={p.icon} class="h-5 w-5" />
+            </span>
+            <span class="min-w-0">
+              {/* Footer titles 16px, small feature description 12px (brief) */}
+              <h3 class="text-[13.5px] leading-snug font-bold text-ink-900 sm:text-[15px]">
+                {p.title}
+              </h3>
+              <p class="mt-1 text-[11.5px] leading-snug text-ink-500 sm:text-[12.5px]">
+                {p.text}
+              </p>
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- Newsletter / business strip -->
+    <div
+      class="mt-6 flex flex-col items-start justify-between gap-5 rounded-2xl bg-gray-100 p-5 sm:flex-row sm:items-center sm:p-6 lg:p-8"
+    >
+      <div class="min-w-0 max-w-xl">
+        <h3 class="text-[17px] font-bold text-ink-900 sm:text-[19px]">
+          Product news and offers from JOHNKEANS
+        </h3>
+        <p class="mt-1.5 text-[13px] text-ink-600 sm:text-[13.5px]">
+          New ranges, trade bundles and technical updates. Optional, and you can unsubscribe at any
+          time.
+        </p>
+      </div>
+      <form class="flex w-full max-w-md flex-col gap-2.5 sm:flex-row" action="/newsletter">
+        <label for="newsletter-email" class="sr-only">Business email</label>
+        <input
+          id="newsletter-email"
+          type="email"
+          name="email"
+          required
+          placeholder="Your business email"
+          class="h-12 w-full min-w-0 rounded-btn border border-ink-200 bg-white px-4 text-sm text-ink-900 placeholder:text-ink-400 focus:border-jk-600 focus:outline-none"
+        />
+        <button type="submit" class="btn btn-md btn-primary shrink-0">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
